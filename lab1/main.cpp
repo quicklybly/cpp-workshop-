@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void validate_size(int height, int width) {
+void validate_size(const int height, const int width) {
     if (height < 2) {
         throw invalid_argument("Matrix height should be >= 2");
     }
@@ -12,7 +12,7 @@ void validate_size(int height, int width) {
     }
 }
 
-int** init_array(int height, int width) {
+int** init_array(const int height, const int width) {
 
     int **arr = new int*[height];
 
@@ -23,7 +23,7 @@ int** init_array(int height, int width) {
     return arr;
 }
 
-void fill_array_from_string(int* arr, const string& s, int width) {
+void fill_array_from_string(int* arr, const string& s, const int width) {
     if (s.size() != width) {
         throw invalid_argument("String length should be equal to matrix width");
     }
@@ -36,7 +36,7 @@ void fill_array_from_string(int* arr, const string& s, int width) {
     }
 }
 
-void fill_matrix(int **arr, int height, int width) {
+void fill_matrix(int **arr, const int height, const int width) {
     for (int i = 2; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             arr[i][j] = arr[i - 1][j] + arr[i - 2][j];
@@ -44,7 +44,7 @@ void fill_matrix(int **arr, int height, int width) {
     }
 }
 
-void print_result(int** arr, int height, int width) {
+void print_result(int** arr, const int height, const int width) {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             cout << arr[i][j] << ' ';
@@ -53,7 +53,7 @@ void print_result(int** arr, int height, int width) {
     }
 }
 
-void clear(int** arr, int height, int width) {
+void clear(int** arr, const int height) {
     for (int i = 0; i < height; ++i) {
         delete[] arr[i];
     }
@@ -77,7 +77,7 @@ int main() {
     fill_matrix(arr, height, width);
 
     print_result(arr, height, width);
-    clear(arr, height, width);
+    clear(arr, height);
 
     return 0;
 }
